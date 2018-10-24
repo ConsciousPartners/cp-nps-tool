@@ -13,16 +13,16 @@ class SurveyController extends Controller
   public function index(Request $request) {
     $inputs = $request->all();
     if (!isset($inputs['ref'])) {
-      abort(404);
+      return view('survey.no-code');
     }
 
     $code = Code::where(['code' => $inputs['ref']])->first();
     if (is_null($code)) {
-      abort(404);
+      return view('survey.no-code');
     }
 
     if (!$code->active) {
-      abort(400, 'This survey has already expired.');
+      return view('survey.expired');
     }
 
     return view('survey.index', compact('inputs'));
@@ -34,7 +34,7 @@ class SurveyController extends Controller
       'anonymize_score' => 'required|boolean',
       'anonymize_feedback' => 'required|boolean',
     ],[
-      'score.required' => 'Please select between 1-10'
+      'score.required' => 'Please choose a response to the first question between 1 and 10.'
     ]);    
 
 

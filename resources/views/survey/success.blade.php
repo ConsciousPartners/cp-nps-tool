@@ -3,10 +3,9 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-8 offset-md-2">
       <div class="alert alert-success">
-        <h2>Success!</h2>
-        <p>Thank you for your feedback!</p>
+        <p>Thank you for submitting your feedback.  We really appreciate your help in our journey to always improve the service we provide to you.</p>
       </div>
     </div>
   </div>

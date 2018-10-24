@@ -16,4 +16,9 @@ class Review extends Model
     }
     return $id;
   }
+
+  public function Code()
+  {
+    return $this->belongsTo(Code::class, 'codes_id', 'id');
+  }
 }

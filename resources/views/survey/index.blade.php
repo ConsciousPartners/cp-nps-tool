@@ -12,9 +12,13 @@
   @endif
 
   <div class="survey-page--header">
-    <h2>Conscious partners monthly feedback survey</h2>
+    <h1>MONTHLY FEEDBACK SURVEY</h1>
 
-    <p>Your feedback is highly appreciated. Integer fringilla mauris scelerisque diam aliquam ultricies. Integer blandit sapien quis ornare vulputate. Nunc eros ligula, interdum semper accumsan dapibus, efficitur ac dolor. Morbi sit amet fermentum ligula, a dignissim lacus. Curabitur semper dapibus felis, at dignissim lectus convallis eget. Sed condimentum odio malesuada urna pulvinar interdum.</p>    
+    <p>As we are an organization that loves to measure and find ways to improve how we deliver success to you, we would like you to fill out this short monthly feedback survey.  We really appreciate your time to help us continuously improve the level of service we provide to our partners so that we can become a better organization.</p>
+
+    <p>In order to help you feel comfortable, you have the option to anonymize each answer.  We do not log IP addresses or time of submissions, and all anonymous answers are randomly sorted so that we are not able to ascertain any information on who submitted what.</p>
+
+    <p>Your feedback is highly appreciated! Thank you.</p>
   </div>
   <div class="survey-page--body">
     <form action="{{ URL::to('/survey/submit') }}" method="POST">
@@ -59,18 +63,18 @@
 
       <div class="row mar-bot">
         <div class="col-md-9">
-          <h4>Do you have any other feedback you would like to share on how we can make your experience with our company better? <span class="optional">(Optional)</span></h4>
+          <h4><span class="optional">(Optional)</span> Do you have any other feedback you would like to share on how we can make your experience with our company better? </h4>
         </div>
         <div class="col-md-3">
           <div class="box-anonymize text-center">
             <h5>Anonymize your Answer?</h5>
             <div class="box-anonymize--options">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="anonymize_feedback" id="inlineRadio3" value="1" checked>
+                <input class="form-check-input" type="radio" name="anonymize_feedback" id="inlineRadio3" value="1">
                 <label class="form-check-label" for="inlineRadio3">Yes</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="anonymize_feedback" id="inlineRadio4" value="0">
+                <input class="form-check-input" type="radio" name="anonymize_feedback" id="inlineRadio4" value="0" checked>
                 <label class="form-check-label" for="inlineRadio4">No</label>
               </div>              
             </div>

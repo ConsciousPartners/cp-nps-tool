@@ -13,4 +13,9 @@ class Code extends Model
     }
     return $randomCode;
   }
+
+  public function Respondent()
+  {
+    return $this->belongsTo(Respondent::class, 'respondents_id', 'id');
+  }  
 }
