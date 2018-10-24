@@ -55,7 +55,7 @@ class SurveyController extends Controller
       }
       $respondent = Respondent::find($code->respondents_id);
       if ($respondent) {
-        $respondent->last_send_at = date('Y-m-d');
+        // $respondent->last_send_at = date('Y-m-d');
         $respondent->save();
       }
       $review = Review::firstOrNew(['id' => $reviewId]);

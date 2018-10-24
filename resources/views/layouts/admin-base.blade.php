@@ -37,6 +37,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin::respondents::admin.respondents.index') }}">Respondents</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('admin::reviews::admin.reviews.index') }}">Reviews</a></li>
                         <!-- Authentication Links -->
                         @guest
@@ -74,6 +75,23 @@
 
         <main class="py-4">
           <div class="container">
+
+            <div class="messages">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                    {{ $error }}
+                    @endforeach
+                </div>
+                @endif
+
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+                @endif                
+            </div>
+
             @yield('content')
           </div>
         </main>

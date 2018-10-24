@@ -24,10 +24,23 @@ Route::group(['prefix' => 'survey', 'as' => 'survey::'], function() {
 
 Route::group(['middleware' => ['web', 'auth']], function (){
   Route::group(['prefix' => 'admin', 'as' => 'admin::'], function() {
+
     Route::get('/', 'Admin\AdminController@index')->name('admin.admin.index');
 
     Route::group(['prefix' => 'reviews', 'as' => 'reviews::'], function() {
       Route::get('/', 'Admin\ReviewsController@index')->name('admin.reviews.index');
     });
+
+    Route::group(['prefix' => 'respondents', 'as' => 'respondents::'], function(){
+      Route::get('/', 'Admin\RespondentsController@index')->name('admin.respondents.index');
+      Route::post('/', 'Admin\RespondentsController@store')->name('admin.respondents.store');
+      Route::get('/create', 'Admin\RespondentsController@create')->name('admin.respondents.create');
+    });
+
+    Route::group(['prefix' => 'mailchimp', 'as' => 'mailchimp::'], function(){
+      Route::post('/fetch', 'Admin\MailchimpController@fetch')->name('admin.mailchimp.fetch');
+      Route::post('/send-survey', 'Admin\MailchimpController@sendSurveys')->name('admin.mailchimp.send-survey');
+    });
+
   });
 });
