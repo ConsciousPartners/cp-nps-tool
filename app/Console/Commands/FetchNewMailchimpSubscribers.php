@@ -44,6 +44,8 @@ class FetchNewMailchimpSubscribers extends Command
     foreach($members as $member) {
       $respondent = Respondent::firstOrNew(['email' => $member['email_address']]);
       if (!$respondent->exists) {
+        $respondent->first_name = $member['merge_fields']['FNAME'];
+        $respondent->last_name = $member['merge_fields']['LNAME'];
         $respondent->save();
       }
     }
