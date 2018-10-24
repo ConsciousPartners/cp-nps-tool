@@ -1,0 +1,117 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import '../vendor/radio-to-slider/radios-to-slider.css';
+
+.gradient-bg {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d83f5c+0,b0afad+50,427ebd+100 */
+  background: #d83f5c; /* Old browsers */
+  background: -moz-linear-gradient(left, #d83f5c 0%, #b0afad 50%, #427ebd 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #d83f5c 0%,#b0afad 50%,#427ebd 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #d83f5c 0%,#b0afad 50%,#427ebd 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d83f5c', endColorstr='#427ebd',GradientType=1 ); /* IE6-9 */  
+}
+
+body {
+  color: #000000;
+}
+
+.navbar-laravel {
+  background-color: #427ebd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.score-legend {
+  @extend .gradient-bg;
+  color: #ffffff;
+  padding: 5px 18px;
+  border-radius: 15px;
+  margin: 20px 0 40px;
+}
+
+.survey-page {
+  &--header {
+    margin-bottom: 1.6rem;
+    border-bottom: 34px solid #ededec;
+
+    h2 {
+      margin-bottom: 1.6rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    p {
+      color: #606060;
+    }
+  }
+}
+
+.box-sep {
+  margin-bottom: 1.6rem;
+  border-bottom: 34px solid #ededec;
+}
+
+.radios-to-slider {
+  background: none;
+
+  &.medium {
+    &:before {
+      content: "";
+      width: inherit;
+      border-bottom: 2px solid #ccc;
+      position: absolute;
+      top: 15px;      
+    }
+
+    .slider-label {
+      top: 35px;
+    }
+  }
+
+  .slider-label {
+    font-weight: bold;    
+  }
+
+  .slider-level {
+    border: 5px solid #cccccc;
+  }
+}
+
+.box-anonymize {
+  border: 1px solid #dddddd;
+  padding: 15px 10px;
+
+  label {
+    font-weight: 900;
+  }
+}
+
+// buttons
+
+.btn {
+  &.btn-custom {
+    font-size: 1.6rem;
+    box-shadow: 0px 3px 10px rgba(17, 17, 17, 0.85);
+    min-width: 280px;
+    font-weight: 600;
+    border-radius: .7rem;    
+  }
+}
+
+
+// misc
+
+.optional {
+  color: #c1ced7;
+}
+
+.mar-bot {
+  margin-bottom: 1.6rem;
+}
