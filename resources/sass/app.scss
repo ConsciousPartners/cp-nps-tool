@@ -23,9 +23,15 @@ body {
   color: #000000;
 }
 
+// nav
+
 .navbar-laravel {
   background-color: #427ebd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #ffffff;
 }
 
 .score-legend {

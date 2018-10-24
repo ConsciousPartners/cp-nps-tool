@@ -53,6 +53,11 @@ class SurveyController extends Controller
       if (!$code->active) {
         abort(400, 'This survey has already expired.');
       }
+      $respondent = Respondent::find($code->respondents_id);
+      if ($respondent) {
+        $respondent->last_send_at = date('Y-m-d');
+        $respondent->save();
+      }
       $review = Review::firstOrNew(['id' => $reviewId]);
 
       if ($request->input('anonymize_score') === '0') {
@@ -67,10 +72,12 @@ class SurveyController extends Controller
         }
 
         $feedback->feedback = $request->input('feedback');
+        $feedback->reviewed_at = date('Y-m-d H:i:s');
         $feedback->save();
       }
   
       // Save review
+      $review->reviewed_at = date('Y-m-d H:i:s');
       $review->save();
   
       // Set code to inactive
