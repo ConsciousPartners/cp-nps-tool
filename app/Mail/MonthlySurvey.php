@@ -29,13 +29,7 @@ class MonthlySurvey extends Mailable
     $random_code = Code::generateUniqueCode();
 
     $current_code = Code::where(['respondents_id' => $this->respondent->id, 'active' => TRUE])->first();
-    if (is_null($current_code)) {
-      $code = Code::firstOrCreate(['code' => $random_code, 'respondents_id' => $this->respondent->id]);
-    } else {
-      $response['message'] = 'User currently has an active code.';
-      $code = $current_code;
-    }
-
+    $code = Code::firstOrCreate(['code' => $random_code, 'respondents_id' => $this->respondent->id]);
     $this->respondent->survey_url = URL::to('/?ref=' . $code->code);    
   }
 
@@ -46,6 +40,6 @@ class MonthlySurvey extends Mailable
    */
   public function build()
   {
-    return $this->view('emails.nps-survey');
+    return $this->subject(env('MAIL_SUBJECT'))->view('emails.nps-survey');
   }
 }

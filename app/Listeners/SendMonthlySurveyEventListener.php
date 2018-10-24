@@ -29,6 +29,6 @@ class SendMonthlySurveyEventListener
   {
     $respondent = $event->respondent;
 
-    Mail::to($respondent->email)->subject(env('MAIL_SUBJECT'))->send(new MonthlySurvey($respondent));
+    Mail::to($respondent->email)->send(new MonthlySurvey($respondent));
   }
 }
