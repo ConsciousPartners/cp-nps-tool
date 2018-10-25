@@ -23,7 +23,7 @@
             <td>
               {{ (!$feedback->Code) ? 'Yes' : 'No' }}
             </td>
-            @if ($feedback->Code)
+            @if ($feedback->Code && $feedback->Code->Respondent)
               <td>{{ $feedback->Code->Respondent->first_name }} {{ $feedback->Code->Respondent->last_name }}</td>
               <td>{{ $feedback->Code->Respondent->email }}</td>
             @else

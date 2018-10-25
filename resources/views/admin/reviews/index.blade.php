@@ -23,7 +23,7 @@
             <td>
               {{ (!$review->codes_id) ? 'Yes' : 'No' }}
             </td>
-            @if ($review->Code)
+            @if ($review->Code && $review->Code->Respondent)
               <td>{{ $review->Code->Respondent->first_name }} {{ $review->Code->Respondent->last_name }}</td>
               <td>{{ $review->Code->Respondent->email }}</td>
             @else
