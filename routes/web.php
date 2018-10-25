@@ -27,15 +27,35 @@ Route::group(['middleware' => ['web', 'auth']], function (){
 
     Route::get('/', 'Admin\AdminController@index')->name('admin.admin.index');
 
-    Route::group(['prefix' => 'reviews', 'as' => 'reviews::'], function() {
-      Route::get('/', 'Admin\ReviewsController@index')->name('admin.reviews.index');
-    });
+    Route::resource('reviews', 'Admin\ReviewsController', ['only' => [
+      'index', 'create', 'store', 'destroy'
+    ],
+    ['names' => [
+      'index' => 'reviews.index',
+      'create' => 'reviews.create',
+      'store' => 'reviews.store',
+      'destroy' => 'reviews.destroy',
+    ]]]);
 
-    Route::group(['prefix' => 'respondents', 'as' => 'respondents::'], function(){
-      Route::get('/', 'Admin\RespondentsController@index')->name('admin.respondents.index');
-      Route::post('/', 'Admin\RespondentsController@store')->name('admin.respondents.store');
-      Route::get('/create', 'Admin\RespondentsController@create')->name('admin.respondents.create');
-    });
+    Route::resource('feedbacks', 'Admin\FeedbacksController', ['only' => [
+      'index', 'create', 'store', 'destroy'
+    ],
+    ['names' => [
+      'index' => 'feedbacks.index',
+      'create' => 'feedbacks.create',
+      'store' => 'feedbacks.store',
+      'destroy' => 'feedbacks.destroy',
+    ]]]);  
+
+    Route::resource('respondents', 'Admin\RespondentsController', ['only' => [
+      'index', 'create', 'store', 'destroy'
+    ],
+    ['names' => [
+      'index' => 'respondents.index',
+      'create' => 'respondents.create',
+      'store' => 'respondents.store',
+      'destroy' => 'respondents.destroy',
+    ]]]);    
 
     Route::group(['prefix' => 'mailchimp', 'as' => 'mailchimp::'], function(){
       Route::post('/fetch', 'Admin\MailchimpController@fetch')->name('admin.mailchimp.fetch');

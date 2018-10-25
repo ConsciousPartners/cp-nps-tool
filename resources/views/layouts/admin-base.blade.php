@@ -32,13 +32,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                       
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin::respondents.index') }}">Respondents</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin::reviews.index') }}">Reviews</a></li>                       
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin::feedbacks.index') }}">Feedbacks</a></li>                       
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('admin::respondents::admin.respondents.index') }}">Respondents</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('admin::reviews::admin.reviews.index') }}">Reviews</a></li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -56,6 +56,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a href="{{ route('entrust-gui::users.index') }}" class="dropdown-item">Users</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

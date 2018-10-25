@@ -29,20 +29,37 @@ class RespondentsController extends Controller
         $respondent->last_name = $request->input('last_name');
         $respondent->save();
 
-        return redirect(route('admin::respondents::admin.respondents.index'))
+        return redirect(route('admin::respondents.index'))
           ->with('message', 'Added new respondent.');        
       } else {
         return redirect()
-        ->back()
-        ->withErrors(['This email already exists.'])
-        ->withInput();   
+          ->back()
+          ->withErrors(['This email already exists.'])
+          ->withInput();   
       }
 
     } catch (\Exception $e) {
       return redirect()
-      ->back()
-      ->withErrors([$e->getMessage()])
-      ->withInput();       
+        ->back()
+        ->withErrors([$e->getMessage()])
+        ->withInput();       
+    }
+  }
+
+  public function destroy(Request $request, Respondent $respondent)
+  {
+    try {
+      $item = Respondent::find($respondent->id);
+      $item->delete();
+      
+      return redirect()
+        ->back()
+        ->with('message', 'Successfully deleted respondent.');
+    } catch (\Exception $e) {
+      return redirect()
+        ->back()
+        ->withErrors([$e->getMessage()])
+        ->withInput();      
     }
   }
 }

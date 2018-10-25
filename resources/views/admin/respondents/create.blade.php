@@ -6,7 +6,7 @@
     <div class="col-md-6 off-md-3">
       <h1>Add Respondent</h1>  
 
-      <form method="POST" action="{{ route('admin::respondents::admin.respondents.store') }}">
+      <form method="POST" action="{{ route('admin::respondents.store') }}">
         @csrf
         <div class="form-group">
           <label for="">First Name</label>
