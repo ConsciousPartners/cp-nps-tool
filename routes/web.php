@@ -55,7 +55,9 @@ Route::group(['middleware' => ['web', 'auth']], function (){
       'create' => 'respondents.create',
       'store' => 'respondents.store',
       'destroy' => 'respondents.destroy',
-    ]]]);    
+    ]]]);
+
+    Route::post('respondents/{id}/get-code', 'Admin\RespondentsController@getCode');
 
     Route::group(['prefix' => 'mailchimp', 'as' => 'mailchimp::'], function(){
       Route::post('/fetch', 'Admin\MailchimpController@fetch')->name('admin.mailchimp.fetch');
@@ -63,4 +65,9 @@ Route::group(['middleware' => ['web', 'auth']], function (){
     });
 
   });
+});
+
+Route::get('test', function(){
+  $respondent = \App\Models\Respondent::find(1);
+  dd( $respondent->Code()->where('active', 1)->first() );
 });

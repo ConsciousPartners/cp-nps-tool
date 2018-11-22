@@ -6,6 +6,3 @@
  */
 
 require('./bootstrap');
-require('./../vendor/radio-to-slider/radios-to-slider');
-
-

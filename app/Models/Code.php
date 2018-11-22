@@ -16,6 +16,6 @@ class Code extends Model
 
   public function Respondent()
   {
-    return $this->belongsTo(Respondent::class, 'respondents_id', 'id');
+    return $this->belongsTo(Respondent::class, 'id', 'respondents_id');
   }  
 }

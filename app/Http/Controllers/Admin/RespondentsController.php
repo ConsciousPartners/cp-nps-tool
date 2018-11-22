@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Respondent;
+use App\Models\Code;
+use URL;
 
 class RespondentsController extends Controller
 {
@@ -60,6 +62,23 @@ class RespondentsController extends Controller
         ->back()
         ->withErrors([$e->getMessage()])
         ->withInput();      
+    }
+  }
+
+  public function getCode(Request $request, $id)
+  {
+    $response = [];
+    try {
+      $respondent = Respondent::find($id);
+      if ($respondent) {
+        $random_code = Code::generateUniqueCode();
+        $code = Code::firstOrCreate(['code' => $random_code, 'respondents_id' => $respondent->id]);
+        $response['url'] = URL::to('/?ref=' . $code->code);
+
+        return response()->json($response, 200);
+      }
+    } catch (\Exception $e) {
+      return response()->json(['message' => $e->getMessage()], 400);
     }
   }
 }
