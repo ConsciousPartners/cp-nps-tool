@@ -12,6 +12,7 @@
             <th>Anonymous?</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Month</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -30,6 +31,20 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             @endif
+            <td>
+              @if ($feedback->reviewed_at)
+                <?php
+                  $month = date('m', strtotime($feedback->reviewed_at));
+                  $day = date('j', strtotime($feedback->reviewed_at));
+                  $year = date('Y', strtotime($feedback->reviewed_at));
+                ?>
+                @if ($day <= 10)
+                  {{ date('M', strtotime("-1 month",strtotime($feedback->reviewed_at))) }} {{ $year }}
+                @else
+                  {{ date('M', strtotime($feedback->reviewed_at)) }} {{ $year }}
+                @endif
+              @endif
+            </td>            
             <td>
               <form action="{{ route('admin::feedbacks.destroy', $feedback->id) }}" method="POST">
                 @csrf

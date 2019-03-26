@@ -12,6 +12,7 @@
             <th>Anonymous?</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Month</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -30,6 +31,20 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             @endif
+            <td>
+              @if ($review->reviewed_at)
+                <?php
+                  $month = date('m', strtotime($review->reviewed_at));
+                  $day = date('j', strtotime($review->reviewed_at));
+                  $year = date('Y', strtotime($review->reviewed_at));
+                ?>
+                @if ($day <= 10)
+                  {{ date('M', strtotime("-1 month",strtotime($review->reviewed_at))) }} {{ $year }}
+                @else
+                  {{ date('M', strtotime($review->reviewed_at)) }} {{ $year }}
+                @endif
+              @endif
+            </td>
             <td>
               <form action="{{ route('admin::reviews.destroy', $review->id) }}" method="POST">
                 @csrf
