@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('header-scripts')
+<script>
+  window._cp_ref = "<?php echo isset($_GET['ref']) ? $_GET['ref'] : ''; ?>";
+</script>
+@endsection
+
 @section('content')
 <div class="container survey-page">
 
@@ -13,15 +19,9 @@
 
   <div class="survey-page--header">
     <h1>MONTHLY FEEDBACK SURVEY</h1>
-
-    <p>As we are an organization that loves to measure and find ways to improve how we deliver success to you, we would like you to fill out this short monthly feedback survey.  We really appreciate your time to help us continuously improve the level of service we provide to our partners so that we can become a better organization.</p>
-
-    <p>In order to help you feel comfortable, you have the option to anonymize each answer.  We do not log IP addresses or time of submissions, and all anonymous answers are randomly sorted so that we are not able to ascertain any information on who submitted what.</p>
-
-    <p>Your feedback is highly appreciated! Thank you.</p>
   </div>
   <div class="survey-page--body">
-    <form action="{{ URL::to('/survey/submit') }}" method="POST">
+    <form id="surveyForm" action="{{ URL::to('/survey/submit') }}" method="POST">
       @csrf
       <input type="hidden" name="code" value="{{ $inputs['ref'] }}" />
       <div class="row">
@@ -87,9 +87,13 @@
       </div>
 
       <div class="text-center">
-        <button class="btn btn-custom btn-lg btn-primary">SUBMIT</button>
+        <button type="submit" class="btn btn-custom btn-lg btn-primary">SUBMIT</button>
       </div>
     </form>
+
+    <div class="text-center pt-5 pb-5">
+      <p class="mb-0"><small>In order to help you feel comfortable, you have the option to anonymize each answer.  We do not log IP addresses or time of submissions, and all anonymous answers are randomly sorted so that we are not able to ascertain any information on who submitted what.</small></p>
+    </div>
 
   </div>
 </div>
