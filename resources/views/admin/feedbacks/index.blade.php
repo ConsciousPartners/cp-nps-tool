@@ -38,7 +38,7 @@
                   $day = date('j', strtotime($feedback->reviewed_at));
                   $year = date('Y', strtotime($feedback->reviewed_at));
                 ?>
-                @if ($day <= 10)
+                @if ($day <= 15)
                   {{ date('M', strtotime("-1 month",strtotime($feedback->reviewed_at))) }} {{ $year }}
                 @else
                   {{ date('M', strtotime($feedback->reviewed_at)) }} {{ $year }}

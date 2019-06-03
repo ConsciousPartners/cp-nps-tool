@@ -39,10 +39,8 @@ class SurveyController extends Controller
 
 
     if ($validator->fails()) {
-      return redirect()
-        ->back()
-        ->withErrors($validator)
-        ->withInput();
+      return response()
+            ->json(['success' => 0, 'message' => $validator]);
     }
 
     try {
@@ -51,7 +49,12 @@ class SurveyController extends Controller
       $code = Code::where(['code' => $request->input('code')])->first();
 
       if (!$code->active) {
-        abort(400, 'This survey has already expired.');
+        return response()
+            ->json(['success' => 0, 'message' => [
+              'customMessages' => array(
+                'error.message' => 'This survey has already expired.'
+              )
+            ]]);
       }
       $respondent = Respondent::find($code->respondents_id);
       if ($respondent) {
@@ -84,12 +87,15 @@ class SurveyController extends Controller
       $code->active = false;
       $code->save();
       
-      return redirect()->route('survey::survey.success');
+      return response()
+              ->json(['success' => 1, 'message' => 'Thank you for submitting your feedback.  We really appreciate your help in our journey to always improve the service we provide to you.']);
     } catch(\Exception $e) {
-      return redirect()
-        ->back()
-        ->withErrors([$e->getMessage()])
-        ->withInput();      
+      return response()
+              ->json(['success' => 0, 'message' => [
+                'customMessages' => array(
+                  'error.message' => 'Something went wrong. Please try again.'
+                )
+            ]]);
     }
   }
 
