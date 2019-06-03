@@ -91,7 +91,7 @@
       </div>
     </form>
 
-    <div class="text-center pt-5 pb-5">
+    <div class="text-center pt-3 pb-5">
       <p class="mb-0"><small>In order to help you feel comfortable, you have the option to anonymize each answer.  We do not log IP addresses or time of submissions, and all anonymous answers are randomly sorted so that we are not able to ascertain any information on who submitted what.</small></p>
     </div>
 
