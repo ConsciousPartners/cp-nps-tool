@@ -92,7 +92,7 @@ class SurveyController extends Controller
         $review->save();
       }
       
-      if ($request->input('step') === 2 && $request->input('feedback')) {
+      if ($request->input('step') === "2" && $request->input('feedback')) {
         $feedback = Feedback::firstOrNew(['id' => $feedbackId]);
         if ($request->input('anonymize_feedback') === '0') {
           $feedback->codes_id = $code->id;
