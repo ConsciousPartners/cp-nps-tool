@@ -2,7 +2,7 @@
 
 @section('header-scripts')
 <script>
-  window._cp_ref = "<?php echo isset($_GET['ref']) ? $_GET['ref'] : ''; ?>";
+  window._cp_ref = "<?php echo isset($_GET['one-time-code']) ? $_GET['one-time-code'] : ''; ?>";
 </script>
 @endsection
 
@@ -18,12 +18,13 @@
   @endif
 
   <div class="survey-page--header">
-    <h1>MONTHLY FEEDBACK SURVEY</h1>
+    <h1>FEEDBACK SURVEY</h1>
   </div>
   <div class="survey-page--body">
-    <form id="surveyForm" action="{{ URL::to('/survey/submit') }}" method="POST">
+    <form data-event-category="Form" data-event-action="NPSReplyComplete" data-event-label="<?php echo isset($_GET['one-time-code']) ? $_GET['one-time-code'] : ''; ?>" id="surveyForm" action="{{ URL::to('/survey/submit') }}" method="POST">
       @csrf
-      <input type="hidden" name="code" value="{{ $inputs['ref'] }}" />
+      <input type="hidden" name="code" value="{{ $inputs['one-time-code'] }}" />
+      <input type="hidden" name="step" value="1">
       <div class="row">
         <div class="col-md-9">
           <h4>Considering your complete experience with our company, how likely would you be to recommend us to a friend or colleague?</h4>
@@ -61,38 +62,13 @@
 
       <div class="box-sep"></div>
 
-      <div class="row mar-bot">
-        <div class="col-md-9">
-          <h4><span class="optional">(Optional)</span> Do you have any other feedback you would like to share on how we can make your experience with our company better? </h4>
-        </div>
-        <div class="col-md-3">
-          <div class="box-anonymize text-center">
-            <h5>Anonymize your Answer?</h5>
-            <div class="box-anonymize--options">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="anonymize_feedback" id="inlineRadio3" value="1">
-                <label class="form-check-label" for="inlineRadio3">Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="anonymize_feedback" id="inlineRadio4" value="0" checked>
-                <label class="form-check-label" for="inlineRadio4">No</label>
-              </div>              
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <textarea name="feedback" cols="30" rows="5" class="form-control"></textarea>
-      </div>
-
       <div class="text-center">
         <button type="submit" class="btn btn-custom btn-lg btn-primary">SUBMIT</button>
       </div>
     </form>
 
     <div class="text-center pt-3 pb-5">
-      <p class="mb-0"><small>In order to help you feel comfortable, you have the option to anonymize each answer.  We do not log IP addresses or time of submissions, and all anonymous answers are randomly sorted so that we are not able to ascertain any information on who submitted what.</small></p>
+      <p class="mb-0 disclaimer"><small>In order to help you feel comfortable, you have the option to anonymize each answer.  We do not log IP addresses or time of submissions, and all anonymous answers are randomly sorted so that we are not able to ascertain any information on who submitted what.</small></p>
     </div>
 
   </div>

@@ -54,7 +54,12 @@ $(document).ready(function(){
 
       if (response.data.success === 1) {
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event : 'surveyFormSubmit' });
+        window.dataLayer.push({ 
+          event : 'globalEvent',
+          eventCategory : $surveyForm.data('event-category'),
+          eventAction : $surveyForm.data('event-action'),
+          eventLabel : $surveyForm.data('event-label')
+        });
         $surveyForm.find(":input").attr("disabled", true);
         if (radios) {
           for (var i in radios) {
@@ -62,9 +67,14 @@ $(document).ready(function(){
           }
         }
         Toastr.success(response.data.message, 'Success!', { timeOut : 20000 });
+        var url = window.location.href;
+        setTimeout(function(){
+          window.location.reload(false);
+        }, 3000);
       }
     })
     .catch(function (error) {
+      console.log(error);
       Toastr.warning('Something went wrong. Please try again.');
     });
   });
