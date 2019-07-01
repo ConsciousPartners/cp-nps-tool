@@ -30,7 +30,7 @@ class MonthlySurvey extends Mailable
 
     $current_code = Code::where(['respondents_id' => $this->respondent->id, 'active' => TRUE])->first();
     $code = Code::firstOrCreate(['code' => $random_code, 'respondents_id' => $this->respondent->id]);
-    $this->respondent->survey_url = URL::to('/?ref=' . $code->code);    
+    $this->respondent->survey_url = URL::to('/?one-time-code=' . $code->code);    
   }
 
   /**

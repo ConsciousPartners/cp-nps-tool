@@ -34,7 +34,7 @@ class UrlGeneratorController extends Controller
           $code = $current_code;
         }
 
-        $response['url'] = URL::to('/?ref=' . $code->code);
+        $response['url'] = URL::to('/?one-time-code=' . $code->code);
         return response()->json($response, 200);
       } catch(\Exception $e) {
         return response()->json(['message' => $e->getMessage()], 400);

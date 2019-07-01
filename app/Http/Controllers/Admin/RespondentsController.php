@@ -73,7 +73,7 @@ class RespondentsController extends Controller
       if ($respondent) {
         $random_code = Code::generateUniqueCode();
         $code = Code::firstOrCreate(['code' => $random_code, 'respondents_id' => $respondent->id]);
-        $response['url'] = URL::to('/?ref=' . $code->code);
+        $response['url'] = URL::to('/?one-time-code=' . $code->code);
 
         return response()->json($response, 200);
       }
