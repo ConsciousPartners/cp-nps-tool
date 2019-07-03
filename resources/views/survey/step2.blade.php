@@ -32,10 +32,10 @@
           @if(in_array($data['score'], [1,2,3,4,5,6]))
             <h4><span class="optional">(Optional)</span> We're sorry we weren't able to provide you with a better experience. We'd really like to improve that {{ $data['score'] }} in the future and we would be very grateful if you could quickly suggest one thing we could improve on.</h4>
           @endif
-          @if (in_array($data['score'], [7,8]))
-            <h4><span class="optional">(Optional)</span> @if($data['score'] === 8) An @else A @endif {{ $data['score'] }} is not good enough and we'd still like to improve on that in the future.  We would be very grateful if you could quickly suggest one thing we could improve on.</h4>
+          @if (in_array($data['score'], [7,8,9]))
+            <h4><span class="optional">(Optional)</span> We appreciate you rating us @if($data['score'] === 8) an @else a @endif {{ $data['score'] }}. However, we strive to be better and we'd still like to improve on that in the future. We would be very grateful if you could quickly suggest one thing we could improve on.</h4>
           @endif
-          @if (in_array($data['score'], [9,10]))
+          @if (in_array($data['score'], [10]))
             <h4><span class="optional">(Optional)</span> We're glad you enjoyed your experience working with us.  We're always looking to do better and we would be very grateful if you could quickly suggest one thing we could improve on.</h4>
           @endif
         </div>
